@@ -20,6 +20,11 @@ class MemoController(
         return ModelAndView("register")
     }
 
+    @GetMapping("/index.html")
+    fun index(): ModelAndView {
+        return ModelAndView("index")
+    }
+
     @PostMapping("/api/memos/new-memo")
     fun createMemo(@RequestBody memoDtoRequest: MemoDtoRequest): BaseResponse<MemoDtoResponse> {
             val response = memoService.createMemo(memoDtoRequest)

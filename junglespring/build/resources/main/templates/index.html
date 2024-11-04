@@ -21,7 +21,7 @@
             // 2. 메모 목록을 불러와서 HTML로 붙입니다.
             $.ajax({
                 type: "GET",
-                url: "/api/memos",
+                url: "/api/memo",
                 data: {},
                 success: function (response) {
                     for (let i = 0; i < response.length; i++) {

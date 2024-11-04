@@ -27,7 +27,7 @@
 <div class="container">
     <div class="login-container">
         <h5 class="login-header">회원가입</h5>
-<!--        <form id="registerForm" class="row" style="gap: 1em;" method="post" action="/register">-->
+        <form id="registerForm" class="row" style="gap: 1em;" method="post" action="/api/member/signup">
             <div class="row">
                 <div class="input-field col s3">
                     <label for="id">ID입력</label>
@@ -45,10 +45,45 @@
                 </div>
             </div>
             <div class="right-align col s12">
-<!--                <button type="submit" class="waves-effect waves-light btn-large">회원가입</button>-->
-<!--                <a href="/" class="waves-effect waves-light btn-large">취소</a>-->
+                <button type="submit" class="waves-effect waves-light btn-large">회원가입</button>
+                <a href="/" class="waves-effect waves-light btn-large">취소</a>
             </div>
+        </form>
     </div>
 </div>
+
+<!-- JavaScript to handle form submission -->
+<script>
+    document.getElementById('registerForm').addEventListener('submit', async function(event) {
+        event.preventDefault(); // 폼의 기본 제출 방지
+
+        const formData = new FormData(this);
+        const data = {
+            loginId: formData.get('id'),
+            password: formData.get('password')
+        };
+
+        try {
+            const response = await fetch('/api/member/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+
+            if (response.ok) {
+                // 회원가입 성공 시 index.html로 이동
+                window.location.href = '/index.html';
+            } else {
+                // 실패 시 사용자에게 오류 메시지 표시 (필요에 따라 수정)
+                alert('회원가입에 실패했습니다.');
+            }
+        } catch (error) {
+            console.error('회원가입 요청 중 오류 발생:', error);
+            alert('회원가입 중 문제가 발생했습니다.');
+        }
+    });
+</script>
 </body>
 </html>
