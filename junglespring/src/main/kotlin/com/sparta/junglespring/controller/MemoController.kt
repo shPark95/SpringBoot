@@ -26,9 +26,10 @@ class MemoController(
             return BaseResponse(data = response)
         }
 
-        @get:GetMapping("/api/memos")
-        val memos: List<Any>
-        get() = memoService.getMemos()
+    @GetMapping("/api/memo")
+    fun getMemos() : List<Memo> {
+        return memoService.getMemos()
+    }
 
     @GetMapping("/api/memos/{memo-id}")
     fun memo(@PathVariable("memo-id") id:Long) = memoService.getMemo(id)

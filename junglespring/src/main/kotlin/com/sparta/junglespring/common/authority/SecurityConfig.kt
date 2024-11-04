@@ -26,8 +26,8 @@ class SecurityConfig(
                     // 회원가입 요청을 허용
                     .requestMatchers("/api/member/signup", "/api/member/login").anonymous()
                     .requestMatchers("/api/member/**").hasRole("MEMBER")
-                    .requestMatchers("/api/memos/new-memo").authenticated()
-//                    .requestMatchers("/api/memos/**").hasRole("MEMBER")
+//                    .requestMatchers("/api/memos/new-memo").authenticated()
+                    .requestMatchers("/api/memos/**").hasRole("MEMBER")
                     .anyRequest().permitAll()
             }
             .addFilterBefore(
